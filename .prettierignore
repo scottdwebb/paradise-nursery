@@ -1,0 +1,37 @@
+# Build output
+dist
+build
+
+# Coverage / test artifacts
+coverage
+*.log
+
+# Cache and tooling output
+.vite
+.vscode
+.idea
+.eslintcache
+
+# Dependency directories (Prettier already ignores node_modules by default,
+# but keeping it here is explicit and helps some editor integrations)
+node_modules/
+
+# Environment and lock files
+.env
+.env.*.local
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Assets that should not be reformatted
+public/*
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+
+# Optional: ignore markdown/docs if you don't want Prettier to touch them
+# *.md
+docs/**

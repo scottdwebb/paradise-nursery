@@ -1,0 +1,717 @@
+/* 🎨 src/styles/index.css
+ *
+ * TABLE OF CONTENTS
+ * 1. Design Tokens (CSS variables, dark mode)
+ * 2. Global Resets & Base Styles
+ * 3. Header & Navigation
+ * 4. Landing / About Page
+ * 5. Buttons & Shared UI Elements
+ * 6. Product Listing (cards, grid)
+ * 7. Cart Page (items, summary)
+ * 8. Responsive Tweaks
+ */
+
+/* 1. Design Tokens -------------------------------------------------------- */
+
+:root {
+  --color-primary: #2d8659;
+  --color-primary-dark: #1f6041;
+  --color-primary-light: #e8f5e9;
+  --color-accent: #ff6b6b;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f5f5f5;
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #7f8c8d;
+  --color-border: #e0e0e0;
+  --color-success: #4caf50;
+  --color-danger: #f44336;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #1a1a1a;
+    --color-bg-secondary: #2d2d2d;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-border: #404040;
+    --color-primary-light: #1f3a2c;
+  }
+}
+
+/* 2. Global Resets & Base Styles ----------------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+/* 3. Header & Navigation -------------------------------------------------- */
+
+/*  Header layout styles */
+.header {
+  background-color: var(--color-bg-primary);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Company ID (left section of header) */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.logo-icon {
+  background-image: url(/paradise-nursery--logo__250.png);
+  font-size: 2rem;
+  border-radius: 50%;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-position: center;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-name {
+  font-size: 1.625rem;
+  font-weight: 700;
+}
+
+.tagline {
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Main Navigation (middle section of header) */
+.nav-link {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.375rem;
+  color: var(--color-text-primary);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* Shopping Cart (right section of header) */
+.cart-icon-wrapper {
+  position: relative;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.cart-icon-wrapper:hover {
+  background-color: var(--color-primary-light);
+}
+
+.cart-icon {
+  font-size: 1.75rem;
+  color: var(--color-primary);
+}
+
+.cart-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--color-accent);
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* 4. Landing / About Page ------------------------------------------------- */
+
+/* Page layout styles */
+.landing-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-align: left;
+  overflow: hidden;
+
+  /* full-cover plant background image */
+  background-image:
+    linear-gradient(to bottom right, rgba(10, 30, 20, 0.75), rgba(10, 10, 10, 0.85)),
+    url("https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* subtle floating pattern overlay (optional) */
+.landing-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+.landing-content {
+  position: relative;
+  max-width: 900px;
+  z-index: 1;
+  animation: fadeInUp 0.9s ease;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  padding: 2rem 2rem;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(6px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Title and Content styles */
+.landing-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.landing-tagline {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+}
+
+.landing-description {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.landing-description:last-of-type {
+  margin-bottom: 2.5rem;
+}
+
+/* CTA (call-to-action) */
+.landing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* 5. Buttons & Shared UI Elements ---------------------------------------- */
+
+/* reuse .btn but tweak for hero */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2.5rem;
+  background-color: #ffffff;
+  color: var(--color-primary);
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--color-primary-light);
+}
+
+/* 6. Product Listing (cards, grid) --------------------------------------- */
+
+/* Page layout and title styles */
+.products-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Category sections styles */
+.category-section {
+  margin-bottom: 3rem;
+}
+
+.category-title {
+  font-size: 1.75rem;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--color-primary);
+}
+
+/* Grid layout */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Product Item cards styles and state */
+.product-card {
+  position: relative;
+  background-color: var(--color-bg-primary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.product-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--color-accent);
+  color: #fff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Product Item cards layout */
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background-color: var(--color-bg-secondary);
+}
+
+.product-info {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.product-description {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+/* Product Item CTA button state */
+.product-button {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.product-button:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.02);
+}
+
+.product-button:disabled {
+  background-color: var(--color-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.product-button.added {
+  background-color: var(--color-success);
+}
+
+/* 7. Cart Page (items, summary) ------------------------------------------ */
+
+/* Cart Page Empty layout styles */
+.cart-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.cart-empty-icon {
+  font-size: 5rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.cart-empty-text {
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* Cart Item content grid layout styles */
+.cart-content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Cart Item card layout styles */
+.cart-item {
+  background-color: var(--color-bg-primary);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.cart-item-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: var(--color-bg-secondary);
+}
+
+.cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.cart-item-description {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+/* Cart Item card quantity cta section layout and state styles */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--color-bg-secondary);
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.quantity-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.quantity-btn:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.1);
+}
+
+.quantity-display {
+  font-size: 1.125rem;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Cart Item card summary styles */
+.cart-item-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.unit-price {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.subtotal {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Cart Item removal button state and styles */
+.delete-btn {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-danger);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 600;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+/* Cart Summary styles (layout,cta state, total quantity of items and costs) */
+.cart-summary {
+  background-color: var(--color-bg-primary);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.summary-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.summary-row:last-of-type {
+  border-bottom: 2px solid var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+.summary-label {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+.summary-value {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.summary-total {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+}
+
+.checkout-btn:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.continue-shopping {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.continue-shopping:hover {
+  text-decoration: underline;
+}
+
+/* 8. Responsive Tweaks ---------------------------------------------------- */
+
+/* Shopping Cart layout */
+@media (max-width: 968px) {
+  .cart-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Landing Page */
+@media (max-width: 768px) {
+  .landing-page {
+    padding: 2.5rem 1.25rem;
+    text-align: left;
+  }
+
+  .landing-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .landing-title {
+    font-size: 2.25rem;
+  }
+
+  .landing-tagline {
+    font-size: 1.125rem;
+  }
+
+  .tagline {
+    display: none;
+  }
+
+  /* Product List */
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  /* Shopping Cart layout */
+  .cart-item {
+    flex-direction: column;
+  }
+
+  .cart-item-image {
+    width: 100%;
+    height: 200px;
+  }
+}
