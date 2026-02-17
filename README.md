@@ -116,9 +116,9 @@ Paradise Nursery is a single‑page React application where users can browse hou
 │   ├── App.jsx               # Routes for /, /products, /cart
 │   └── main.jsx              # React root, wraps App with Provider
 ├── screenshots/
-│   ├──
-│   ├──
-│   └──
+│   ├── landing-page.png
+│   ├── product-list.png
+│   └── shopping-cart.png
 ├── .gitignore
 ├── .prettierignore
 ├── index.html
@@ -160,14 +160,11 @@ Paradise Nursery is a single‑page React application where users can browse hou
 ### Landing / About Page
 
 ![Landing page](./screenshots/landing-page.png)
-![Landing page](./screenshots/landing-page--mobile.png)
 
 ### Product List
 
 ![Product list](./screenshots/product-list.png)
-![Product list](./screenshots/product-list--mobile.png)
 
 ### Shopping Carts
 
 ![Shopping cart](./screenshots/shopping-cart.png)
-![Shopping cart](./screenshots/shopping-cart--mobile.png)
